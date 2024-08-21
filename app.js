@@ -7,11 +7,15 @@ class AppBoot {
     this.app = app;
     const { url } = this.app.config.mongoose;
     assert(url, '[egg-mongoose] url is required');
-    const db = createConnection(url, this.app.config.mongoose.options);
-    db.on('connected', () => {
-      app.logger.info(`[egg-mongoose] ${url} connected successfully`);
-    });
-    app.mongoose = db;
+    try {
+      const db = createConnection(url, this.app.config.mongoose.options);
+      db.on('connected', () => {
+        app.logger.info(`[egg-mongoose] ${url} connected successfully`);
+      });
+      app.mongoose = db;
+    } catch (error) {
+      app.logger.info(`[egg-plugin-model-hy]: error -- ${error}`);
+    }
   }
 
 
