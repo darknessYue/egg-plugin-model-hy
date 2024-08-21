@@ -45,6 +45,7 @@ exports.pluginModelHy = {
 ```js
 // {app_root}/config/config.default.js
 exports.pluginModelHy = {
+  url: 'mongodb://xxx'
 };
 ```
 
